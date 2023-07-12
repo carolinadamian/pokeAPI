@@ -89,21 +89,18 @@ function consumir() {
 //Plotly.newPlot('myDiv', data2);
 //}
 
-// Gráfica de burbuja con experiencia base (mínimo: 20 puntos de experiencia, máximo: 255 o 608 según la generación)
+// Gráfica tipo scatter plot con experiencia base (mínimo: 20 puntos de experiencia, máximo: 255 o 608 según la generación)
 function graficarBurbuja(){
     var trace1 = {
         x: [],
         y: [],
         mode: 'markers',
-        marker: {
-            color: 'rgb(93, 164, 214)',
-            opacity: 1,
-            size: 40,
-            symbol: 'diamond',
+        type: 'scatter',
+        symbol: 'diamond'
         }
     };
 
-    var data3 = [trace1];
+    var data2 = [trace1];
 
     var layout = {
         title: 'Experiencia base',
@@ -118,12 +115,12 @@ function graficarBurbuja(){
         width: 600
     };
 
-    Plotly.newPlot('myDiv', data3, layout);
+    Plotly.newPlot('myDiv', data2, layout);
 }
 
 // Gráfica de barra vertical con altura del pokémon
 function graficarBarraV(){
-    var data = [
+    var data3 = [
         {
         x: ['Cutiefly', 'Tu Pokémon', 'Eternamax Eternatus'],
         y: [0.1, , 100],
@@ -142,12 +139,12 @@ function graficarBarraV(){
         height: 600,
         width: 600
     };
-    Plotly.newPlot('myDiv', data);
+    Plotly.newPlot('myDiv', data3, layout);
 }
 
 // Gráfica de barra horizontal con peso del pokémon
 function graficarBarraH(){
-    var data=[
+    var data4 =[
         {
             type: 'bar',
             x: [],
@@ -167,7 +164,7 @@ function graficarBarraH(){
         height: 600,
         width: 600
     };
-    Plotly.newPlot('myDiv', data);
+    Plotly.newPlot('myDiv', data4, layout);
 }
 
 
