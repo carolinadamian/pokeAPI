@@ -7,8 +7,8 @@ function graficar(peso, altura) {
             text: ['Flabébé', 'Tu pokemón', 'Eternatus',],
             marker: {
                 size: [10, 35, 85,],
-                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(93, 164, 214)'],
-                symbol: ['circle', 'cross', 'circle'], 
+                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(93, 164, 214)'],
+                symbol: ['circle', 'cross', 'circle'],
 
             }
         }
@@ -38,6 +38,31 @@ function graficar(peso, altura) {
     Plotly.newPlot('graphic_1', data, layout);
 }
 
+// Gráfica tipo scatter plot con experiencia base (mínimo: 20 puntos de experiencia, máximo: 255 o 608 según la generación)
+function graficarScatter(experiencia) {
+    var trace1 = [
+        {
+            x: [experiencia],
+            y: [0, 100, 200, 300, 400, 500, 600, 700],
+            mode: 'markers',
+            //type: 'scatter',
+            symbol: 'diamond'
+        }
+    ];
+
+    var layout = {
+        title: 'Experiencia base',
+        xaxis: {
+            title: 'Pokémon',
+        },
+        yaxis: {
+            title: 'Cantidad de experiencia base',
+        }
+    };
+
+    Plotly.newPlot('graphic_2', trace1, layout);
+}
+
 function consumir() {
     var endPoint = document.getElementById('endPoint').value;
 
@@ -54,15 +79,104 @@ function consumir() {
             var peso = datos.weight;
             var altura = datos.height;
             var nombre = datos.name;
+            var experiencia = datos.base_experience;
+            var img = datos.sprites.front_default;
 
             peso = (peso / 10).toFixed(1);
             altura = (altura / 10).toFixed(1);
             nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
-            
-            
+
+            // const myImage = document.getElementById('card-img');
+            // const newImageSrc = 'new-image.jpg';
+
+            // const newImageHtml = `<img id="my-image" src="${newImageSrc}">`;
+            // imageContainer.innerHTML = newImageHtml;
+
             graficar(peso, altura);
+            graficarScatter(experiencia);
+            graficarBarraV(altura);
+            graficarBarraH(peso);
             console.log(datos)
+            // alert(img)
         })
+}
+
+// Gráfica tipo scatter plot con experiencia base (mínimo: 20 puntos de experiencia, máximo: 255 o 608 según la generación)
+function graficarScatter(experiencia) {
+    var trace1 = [
+        {
+            x: [experiencia],
+            y: [0, 100, 200, 300, 400, 500, 600, 700],
+            mode: 'markers',
+            type: 'scatter',
+            marker: {
+                symbol: 'diamond',
+                size: 50
+            }
+        }
+    ];
+
+    var layout = {
+        title: 'Experiencia base',
+        xaxis: {
+            title: 'Pokémon',
+        },
+        yaxis: {
+            title: 'Cantidad de experiencia base',
+        }
+    };
+
+    Plotly.newPlot('graphic_2', trace1, layout);
+}
+
+// Gráfica de barra vertical con altura del pokémon
+function graficarBarraV(altura) {
+    var data3 = [
+        {
+            x: ['Cutiefly', 'Tu Pokémon', 'Eternamax Eternatus'],
+            y: [0.1, altura, 100],
+            type: 'bar',
+            marker: {
+                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(93, 164, 214)'],
+            }
+
+        }
+    ];
+    var layout = {
+        title: 'Altura',
+        xaxis: {
+            title: 'Pokémon',
+        },
+        yaxis: {
+            title: 'Altura en metros',
+        }
+    };
+    Plotly.newPlot('graphic_3', data3, layout);
+}
+
+// Gráfica de barra horizontal con peso del pokémon
+function graficarBarraH(peso) {
+    var data4 = [
+        {
+            type: 'bar',
+            x: [0.2, peso, 950],
+            y: ['Cutiefly', 'Tu Pokémon', 'Eternamax Eternatus'],
+            orientation: 'h',
+            marker: {
+                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(93, 164, 214)'],
+            }
+        }
+    ];
+    var layout = {
+        title: 'Peso',
+        xaxis: {
+            title: 'Pokémon',
+        },
+        yaxis: {
+            title: 'Peso en kilogramos',
+        }
+    };
+    Plotly.newPlot('graphic_4', data4, layout);
 }
 
 const myCollapseEl = document.querySelector('#all-graphics') //para eliminar las instrucciones
@@ -71,3 +185,5 @@ myCollapseEl.addEventListener('shown.bs.collapse', event => {
     document.getElementById("instructions").style.display = "none";
     // Action to execute once the collapsible area is expanded
 })
+
+const card = document.getElementById
