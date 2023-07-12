@@ -1,3 +1,43 @@
+function graficar(peso, altura) {
+    var data = [
+        {
+            x: [0.1, peso, 950],
+            y: [0.1, altura, 20],
+            mode: 'markers',
+            text: ['Flabébé', 'Tu pokemón', 'Eternatus',],
+            marker: {
+                size: [10, 35, 85,],
+                color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(93, 164, 214)'],
+                symbol: ['circle', 'cross', 'circle'], 
+
+            }
+        }
+    ];
+
+    var layout = {
+        title: 'Tamaño del pokemon',
+        xaxis: {
+            title: 'Peso en kilogramos'
+        },
+        yaxis: {
+            title: 'Altura en metros'
+        },
+
+
+        plot_bgcolor: 'rgba(0,0,0,0)', //eliminar el fondo de las gráficas
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        margin: {
+            l: 50, //Left margin
+            r: 50, //Right margin
+            b: 90, //Bottom margin
+            t: 50, //Top margin
+            //pad: 4, //Padding between content and border
+        }
+    };
+
+    Plotly.newPlot('graphic_1', data, layout);
+}
+
 function consumir() {
     var endPoint = document.getElementById('endPoint').value;
 
@@ -78,7 +118,10 @@ function graficarScatter(experiencia){
         y: [0, 100, 200, 300, 400, 500, 600, 700],
         mode: 'markers',
         type: 'scatter',
-        symbol: 'diamond'
+        marker: { 
+            symbol: 'diamond',
+            size: 50 
+        }
         }
     ];
 
@@ -100,8 +143,12 @@ function graficarBarraV(altura){
     var data3 = [
         {
         x: ['Cutiefly', 'Tu Pokémon', 'Eternamax Eternatus'],
-        y: [0.1, , 100],
-        type: 'bar'
+        y: [0.1, altura, 100],
+        type: 'bar',
+        marker: {
+            color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(93, 164, 214)'],
+        }
+        
         }
     ];
     var layout = {
@@ -113,7 +160,7 @@ function graficarBarraV(altura){
             title: 'Altura en metros',
         }
     };
-    Plotly.newPlot('graphic_3', data3, layout);
+    Plotly.newPlot('graphic_3', data3, layout);
 }
 
 // Gráfica de barra horizontal con peso del pokémon
@@ -121,7 +168,7 @@ function graficarBarraH(peso){
     var data4 =[
         {
             type: 'bar',
-            x: [],
+            x: [0.2, , 950],
             y: ['Cutiefly', 'Tu Pokémon', 'Eternamax Eternatus'],
             orientation: 'h'
         }
