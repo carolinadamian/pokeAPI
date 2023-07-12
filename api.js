@@ -50,9 +50,9 @@ function consumir() {
 
 // Lectura de varios pokémon a la vez
 //let URL = "https://pokeapi.co/api/v2/pokemon/";
-//for(let i =1; i <= 10; i++){
+//for(let i =1; i <= 151; i++){
 //   fetch(URL + i)
-//    .then((response) => response.json())
+//   .then((response) => response.json())
 //   .then(data => traerPokemon(data))
 //}
 
@@ -67,7 +67,7 @@ function consumir() {
 //function graficarTM(tipo, types){   //Cambiar parámetros
 //    var labels = ["Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Dragon", "Steel", "Fairy"];
 //    var parents = ["Tipo"];
-//    var data2 = [
+//    var data = [
 //        {
 //        type: "treemap",
 //        labels: labels,
@@ -86,7 +86,7 @@ function consumir() {
 //                pad: 4,
 //            }   
 //    };     
-//Plotly.newPlot('myDiv', data2);
+//Plotly.newPlot('myDiv', data, layout);
 //}
 
 // Gráfica tipo scatter plot con experiencia base (mínimo: 20 puntos de experiencia, máximo: 255 o 608 según la generación)
