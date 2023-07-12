@@ -1,31 +1,7 @@
-function graficar(personas, calificacion) {
-    var data = [
-        {
-            x: personas,
-            y: calificacion,
-            type: 'scatter',
-        }
-    ];
-
-    var layout = {
-        plot_bgcolor: 'rgba(0,0,0,0)', //eliminar el fondo de las gráficas
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        margin: {
-            l: 50, //Left margin
-            r: 50, //Right margin
-            b: 50, //Bottom margin
-            t: 50, //Top margin
-            pad: 4, //Padding between content and border
-        }
-    };
-
-    Plotly.newPlot('graphic_1', data, layout);
-}
-
 function consumir() {
     var endPoint = document.getElementById('endPoint').value;
 
-    // Llamado a la API
+    // Llamado a la API graphic_1
     fetch(endPoint)
 
         // Promesa cuando se cumple o cuando la respuesta es exitosa
@@ -35,16 +11,21 @@ function consumir() {
 
         // Promesa recibe los datos en formato JSON
         .then(function (datos) {
-            var calificacion = [];
-            var personas = [];
-            for (var i = 0; i < datos.length; i++) {
-                if ((datos[i].rating['rate'] != undefined) && (datos[i].rating['count'] != undefined))
-                    personas.push(datos[i].rating['count']);
-                calificacion.push(datos[i].rating['rate']);
-            }
-            graficar(personas, calificacion);
+            var peso = datos.weight;
+            var altura = datos.height;
+            var nombre = datos.name;
+            var experiencia = datos.base_experience;
+
+            peso = (peso / 10).toFixed(1);
+            altura = (altura / 10).toFixed(1);
+            nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+            
+            
+            graficar(peso, altura);
+            graficarScatter(experiencia);
+            graficarBarraV(altura);
+            graficarBarraH(peso);
             console.log(datos)
-            // alert(calificacion)
         })
 }
 
@@ -77,7 +58,7 @@ function consumir() {
 //    var layout = {
 //        treemapcolorway: ["blue", "red"],
 //       plot_bgcolor: 'rgba(0,0,0,0)',
-//            paper_bgcolor: 'rgba(0,0,0,0)',
+//            paper_bgcolor: 'rgba(0,0,0,0)',  
 //            margin: {
 //                l: 50,
 //                r: 50,
@@ -90,36 +71,32 @@ function consumir() {
 //}
 
 // Gráfica tipo scatter plot con experiencia base (mínimo: 20 puntos de experiencia, máximo: 255 o 608 según la generación)
-function graficarBurbuja(){
-    var trace1 = {
-        x: [],
-        y: [],
+function graficarScatter(experiencia){
+    var trace1 = [
+        {
+        x: [experiencia],
+        y: [0, 100, 200, 300, 400, 500, 600, 700],
         mode: 'markers',
         type: 'scatter',
         symbol: 'diamond'
         }
-    };
-
-    var data2 = [trace1];
+    ];
 
     var layout = {
         title: 'Experiencia base',
         xaxis: {
-            title: 'Número de Pokémon',
+            title: 'Pokémon',
         },
         yaxis: {
             title: 'Cantidad de experiencia base',
         }
-        showlegend: false,
-        height: 600,
-        width: 600
     };
 
-    Plotly.newPlot('myDiv', data2, layout);
-}
+    Plotly.newPlot('graphic_2', trace1, layout);
+} 
 
 // Gráfica de barra vertical con altura del pokémon
-function graficarBarraV(){
+function graficarBarraV(altura){
     var data3 = [
         {
         x: ['Cutiefly', 'Tu Pokémon', 'Eternamax Eternatus'],
@@ -135,15 +112,12 @@ function graficarBarraV(){
         yaxis: {
             title: 'Altura en metros',
         }
-        showlegend: false,
-        height: 600,
-        width: 600
     };
-    Plotly.newPlot('myDiv', data3, layout);
+    Plotly.newPlot('graphic_3', data3, layout);
 }
 
 // Gráfica de barra horizontal con peso del pokémon
-function graficarBarraH(){
+function graficarBarraH(peso){
     var data4 =[
         {
             type: 'bar',
@@ -160,13 +134,9 @@ function graficarBarraH(){
         yaxis: {
             title: 'Peso en kilogramos',
         }
-        showlegend: false,
-        height: 600,
-        width: 600
-    };
-    Plotly.newPlot('myDiv', data4, layout);
+        };
+    Plotly.newPlot('graphic_4', data4, layout);
 }
-
 
 const myCollapseEl = document.querySelector('#all-graphics') //para eliminar las instrucciones
 
