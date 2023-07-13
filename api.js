@@ -80,17 +80,24 @@ function consumir() {
             var altura = datos.height;
             var nombre = datos.name;
             var experiencia = datos.base_experience;
-            var img = datos.sprites.front_default;
+            var pokemonName = document.getElementById('card-title')
 
             peso = (peso / 10).toFixed(1);
             altura = (altura / 10).toFixed(1);
             nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
 
-            // const myImage = document.getElementById('card-img');
-            // const newImageSrc = 'new-image.jpg';
+            var nuevaImg = document.getElementById("card_2");
+            var img = datos.sprites.front_default;
+            nuevaImg.innerHTML = `<img id="img" src="${img}">`
 
-            // const newImageHtml = `<img id="my-image" src="${newImageSrc}">`;
-            // imageContainer.innerHTML = newImageHtml;
+
+            // var imgContainer = document.getElementById('img');
+            // var newImageSrc = img;
+            // var newImgElement = `<img id="img" src="${img}">`;
+            // newImgElement.innerHTML = img;
+
+            pokemonName.innerHTML = nombre
+
 
             graficar(peso, altura);
             graficarScatter(experiencia);
@@ -123,6 +130,16 @@ function graficarScatter(experiencia) {
         },
         yaxis: {
             title: 'Cantidad de experiencia base',
+        },
+
+        plot_bgcolor: 'rgba(0,0,0,0)', //eliminar el fondo de las gráficas
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        margin: {
+            l: 50, //Left margin
+            r: 50, //Right margin
+            b: 90, //Bottom margin
+            t: 50, //Top margin
+            //pad: 4, //Padding between content and border
         }
     };
 
@@ -149,6 +166,16 @@ function graficarBarraV(altura) {
         },
         yaxis: {
             title: 'Altura en metros',
+        },
+
+        plot_bgcolor: 'rgba(0,0,0,0)', //eliminar el fondo de las gráficas
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        margin: {
+            l: 50, //Left margin
+            r: 50, //Right margin
+            b: 90, //Bottom margin
+            t: 50, //Top margin
+            //pad: 4, //Padding between content and border
         }
     };
     Plotly.newPlot('graphic_3', data3, layout);
@@ -174,6 +201,16 @@ function graficarBarraH(peso) {
         },
         yaxis: {
             title: 'Peso en kilogramos',
+        },
+
+        plot_bgcolor: 'rgba(0,0,0,0)', //eliminar el fondo de las gráficas
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        margin: {
+            l: 50, //Left margin
+            r: 50, //Right margin
+            b: 90, //Bottom margin
+            t: 50, //Top margin
+            //pad: 4, //Padding between content and border
         }
     };
     Plotly.newPlot('graphic_4', data4, layout);
