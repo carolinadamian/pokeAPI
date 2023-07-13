@@ -10,7 +10,7 @@
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js" charset="utf-8"></script>
 </head>
 
-<body>
+<body style="padding-bottom: 56px;">
     <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -23,7 +23,9 @@
     <div class="container text-center my-5">
         <div id="instructions" class="pb-2">
             <h3>Instrucciones de uso</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sapiente soluta hic impedit quaerat. Nemo pariatur velit consectetur ipsam voluptatem porro ea ipsum tempora perferendis. Distinctio dolor non repellat est.</p>
+            <p>¡Ingresa la URL de tu Pokémon preferido y visualiza sus estadísticas principales!</p>
+            <p style="color: brown;"> https://pokeapi.co/api/v2/pokemon/###/</p>
+
         </div>
         <form class="d-flex col-sm-10 col-lg-8 mx-auto" role="search">
             <input class="form-control me-2 border border-secondary border-2" type="text" placeholder="Ingrese su endpoint" id="endPoint">
@@ -37,19 +39,16 @@
             </button>
         </form>
 
-        <div class="collapse container my-4 grid gap-3" id="all-graphics">
+        <div class="collapse container my-5 grid gap-3" id="all-graphics">
             <div class="row">
-                <div class="card col-sm-12 col-lg-3 text-start p-2" id="card">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/23.png"
-                        class="card-img-top" alt="...">
+                <div class="card col-sm-12 col-lg-3 text-start" id="card">
+                    <div class="card border border-0" id="card_2"><img id="img" src=""></div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
+                        <h5 class="card-title fw-bolder" id="card-title"></h5>
+                        <p class="card-text">Aquí encontrá información importante del Pokémon elegido, tal como Altura, Peso, Experiencia y Tamaño en relación al el Pokémon más grande y el más pequeño.</p>
+                    </div> 
                 </div>
-                <div class="col-sm-12 col-lg-9" id="graphics_1-2">
+                <div class="col-sm-12 col-lg-9 " id="graphics_1-2">
                     <div class="row">
                         <div class="col">
                             <div class="border border-secondary-subtle rounded p-2" style="height:250px;"
@@ -62,71 +61,26 @@
                         <div class="col">
                             <div class="border border-secondary-subtle rounded p-2" style="height:250px;"
                                 id="graphic_2">
-                                <script>
-
-                                    TESTER = document.getElementById('graphic_2');
-
-                                    Plotly.newPlot(TESTER, [{
-
-                                        x: [1, 2, 3, 4, 5],
-
-                                        y: [1, 2, 4, 8, 16]
-                                    }], {
-
-                                        margin: { t: 0 }
-                                    });
-
-                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-3" id="graphics_3-4">
-                <div class="col-sm-12 col-lg-6 border border-secondary-subtle rounded" style="height:250px;"
+                <div class="col-sm-12 col-lg-6 border border-secondary-subtle rounded rounded p-2" style="height:250px;"
                     id="graphic_3">
-                    <script>
-
-                        TESTER = document.getElementById('graphic_3');
-
-                        Plotly.newPlot(TESTER, [{
-
-                            x: [1, 2, 3, 4, 5],
-
-                            y: [1, 2, 4, 8, 16]
-                        }], {
-
-                            margin: { t: 0 }
-                        });
-
-                    </script>
                 </div>
-                <div class="col-sm-12 col-lg-6 border border-secondary-subtle rounded" style="height:250px;"
+                <div class="col-sm-12 col-lg-6 border border-secondary-subtle rounded rounded p-2" style="height:250px;"
                     id="graphic_4">
-                    <script>
-
-                        TESTER = document.getElementById('graphic_4');
-
-                        Plotly.newPlot(TESTER, [{
-
-                            x: [1, 2, 3, 4, 5],
-
-                            y: [1, 2, 4, 8, 16]
-                        }], {
-
-                            margin: { t: 0 }
-                        });
-
-                    </script>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="clear"></div>
     <footer class="bg-dark border-bottom border-bottom-dark fixed-bottom" data-bs-theme="dark" id="footer">
         <div class="container-fluid text-center">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/800px-Pok%C3%A9_Ball_icon.svg.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" width="30" height="30" class="d-inline-block align-text-top">
-            <p style="color: white;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, quam.</p>
+            <p style="color: white;">The stats of your favorite Pokémon, right here!</p>
         </div>
     </footer>
 
